@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
+from .permissions import IsOwner
 from .serializers import TaskSerializer
 
 
@@ -19,7 +20,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     Update existing task.
     """
     serializer_class = TaskSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, IsOwner)
 
     def get_queryset(self):
         """
